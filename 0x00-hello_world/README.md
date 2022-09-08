@@ -1,1 +1,1 @@
-A c programming that prints to the standard error
+Unix as a programming language
