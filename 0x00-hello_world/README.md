@@ -1,1 +1,1 @@
-Write a C program that prints words
+Use printf to print C program
