@@ -1,1 +1,1 @@
-Printing a variable whether its negative or positive
+This program will assign a random number to the variable
