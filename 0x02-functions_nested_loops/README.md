@@ -1,1 +1,1 @@
-Write a function that prints 10 times the alphabet, in lowercase
+Write a function that prints the n times table, starting with 0
