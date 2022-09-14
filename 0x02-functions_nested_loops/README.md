@@ -1,1 +1,1 @@
-Write a function that prints the alphabet, in lowercase
+Write a program that prints _putchar
