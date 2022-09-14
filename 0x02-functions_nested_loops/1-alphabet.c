@@ -3,7 +3,7 @@
 /**
  * print_alphabet - Check description
  * Description: prints the alphabet in lowercase followe by a new line
- * Return: Always 0.
+ * Return: Nothing.
  */
 void print_alphabet(void)
 {
@@ -13,5 +13,4 @@ void print_alphabet(void)
 		_putchar(i);
 	_putchar('\n');
 
-	return (0);
 }
