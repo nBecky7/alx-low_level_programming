@@ -1,1 +1,1 @@
-Write a program that finds and prints the first 98 Fibonacci numbers
+Write a function that prints the n times table, starting with 0
