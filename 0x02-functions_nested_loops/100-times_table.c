@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * print_times_table - prints the times table
+ * print_times_table - prints times table for numbers from 0-14
  * @n: integer for which the times table will be printed
  *
  * Description: prints the times table
