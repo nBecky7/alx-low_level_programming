@@ -1,10 +1,9 @@
-#include <unistd.h>
-#include "_putchar.h"
+#include "main.h"
 
 /**
- * main - Check code
+ * main - Check description
  *Description: It prints the word _putchar, followed by a new line.
- * Return: 0.
+ * Return: Always 0.
  */
 int main(void)
 {
