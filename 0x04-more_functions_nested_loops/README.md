@@ -1,1 +1,1 @@
-Write a function that prints an integer
+Write a program that prints the numbers from 1 to 100
