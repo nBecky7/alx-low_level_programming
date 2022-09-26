@@ -5,16 +5,16 @@
  * @s: location to fill
  * @b: char to fill location with
  * @n: number of bytes to fill
+ *
  * Return: returns pointer to location filled
  */
-char *_memset(char *s, char b, unsigned int n)
+void *_memset(void *s, int c, size_t n)
 {
-	char *start = s;
+	unsigned int index;
+	unsigned char *memory = s, value = c;
 
-	while (n--)
-	{
-		*s = b;
-		s++;
-	}
-	return (start);
+	for (index = 0; index < n; index++)
+		memory[index] = value;
+
+	return (memory);
 }
