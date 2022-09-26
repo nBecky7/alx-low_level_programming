@@ -1,6 +1,6 @@
 /*
  * File: 0-memset.c
- * Author Becky
+ * Author Rebecca N.M
  */
 
 #include "main.h"
