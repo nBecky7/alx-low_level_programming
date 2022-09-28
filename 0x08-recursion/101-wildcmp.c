@@ -59,7 +59,6 @@ char *postfix_match(char *str, char *postfix)
 
 	if (*postfix == '*')
 		iterate_wild(&postfix);
-		
 	if (*(str + str_len - postfix_len) == *postfix && *postfix != '\0')
 	{
 		postfix++;
