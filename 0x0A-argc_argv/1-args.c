@@ -1,15 +1,22 @@
-#include "main.h"
 #include <stdio.h>
 
 /**
- * main - A program that prints the number of arguements you passed into it
- * @argc: An argument counter
- * @argv: An argument values
- * Return: Always 0 (Success)
+ * main - prints the number of arguments passed into it
+ *
+ * @argc: argument counter
+ * @argv: argument vector
+ *
+ * Return: 0
  */
+
 int main(int argc, char *argv[])
 {
-	if (argv[0])
-		printf("%d\n", argc - 1);
+	int c;
+	(void)argv;
+
+	for (c = 0; c <= argc; c++)
+	{}
+	printf("%d\n", c - 2);
+
 	return (0);
 }
