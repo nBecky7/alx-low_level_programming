@@ -1,1 +1,1 @@
-Write a function that frees a list_t list.
+Write a function that prints words given
