@@ -1,17 +1,15 @@
 #include "main.h"
 
 /**
- * get_endianness - Entry Point
- * Return: 0
+ * get_endianness - Gets the endianness of a machine
+ *
+ * Return: 1 if little endian, 0 if big endian
  */
 int get_endianness(void)
 {
-	unsigned int i = 1;
-	unsigned int i;
+	int x;
+	char *y;
 
-	i = 1;
-	if (*(char *)&i == 1)
-		return (1);
-	else
-		return (0);
+	y = (char *)&x;
+	return (*y + 48);
 }
