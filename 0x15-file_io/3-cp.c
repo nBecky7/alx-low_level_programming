@@ -1,74 +1,48 @@
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/uio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-int safe_close(int);
+#include "main.h"
 /**
- * main - Main function to copy files
- * @argc: The number of passed arguments
- * @argv: The pointers to array arguments
- * Return: 1 on success, exits on failure
+ * main - copies the content of one file to another
+ * @argc: argument count
+ * @argv: argument vector
+ *
+ * Return: 0 if success
  */
 int main(int argc, char *argv[])
 {
-	char buffer[1024];
-	int bytes_read = 0, _EOF = 1, from_fd = -1, to_fd = -1, error = 0;
+	int ffrom, fto, rd, clf, clt;
+	char buff[BUFSIZ];
 
 	if (argc != 3)
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-
-	from_fd = open(argv[1], O_RDONLY);
-	if (from_fd < 0)
+	ffrom = open(argv[1], O_RDONLY);
+	if (ffrom  == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
-
-	to_fd = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
-	if (to_fd < 0)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-		safe_close(from_fd);
-		exit(99);
-	}
-
-	while (_EOF)
-	{
-		_EOF = read(from_fd, buffer, 1024);
-		if (_EOF < 0)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-			safe_close(from_fd);
-			safe_close(to_fd);
-			exit(98);
-		}
-		else if (_EOF == 0)
-			break;
-		bytes_read += _EOF;
-		error = write(to_fd, buffer, _EOF);
-		if (error < 0)
+	fto = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	while ((rd = read(ffrom, buff, BUFSIZ)) > 0)
+		if (fto == -1 || (write(fto, buff, rd) != rd))
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-			safe_close(from_fd);
-			safe_close(to_fd);
 			exit(99);
 		}
-	}
-	error = safe_close(to_fd);
-	if (error < 0)
+	if (rd == -1)
 	{
-		safe_close(from_fd);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		exit(98);
+	}
+	clf = close(ffrom);
+	clt = close(fto);
+	if (clf == -1 || clt == -1)
+	{
+		if (clf == -1)
+			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", ffrom);
+		else if (clt == -1)
+			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fto);
 		exit(100);
 	}
-	error = safe_close(from_fd);
-	if (error < 0)
-		exit(100);
 	return (0);
 }
